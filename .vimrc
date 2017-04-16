@@ -91,7 +91,7 @@ filetype off
 
 " setting for managing package with plug.vim
 set rtp+=~/.vim/plugged/
-call plug#begin('$HOME/.vim/plugged/vimfiles/plugged')
+call plug#begin('~/.vim/plugged/vimfiles/plugged')
 "
 " on-demind loading
 Plug 'scrooloose/nerdtree'
