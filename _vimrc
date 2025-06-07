@@ -88,7 +88,7 @@ endfunction
 
 set nocompatible
 filetype off
-
+let g:syntastic_python_python_exec = 'python3' 
 " setting for managing package with plug.vim
 set rtp+=$HOME/vimfiles/plugged/
 call plug#begin('$HOME/vimfiles/plugged')
@@ -102,6 +102,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'branch': 'release/0.x', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html']}
+"Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer'}
+Plug 'pprovost/vim-ps1'
 
 call plug#end()
 
@@ -213,7 +217,7 @@ elseif MySys() == "windows"
   "set gfn=Bitstream\ Vera\ Sans\ Mono:h10
   "I like my current font setting
   "jfang
-  set guifont=Consolas:h11,Courier,Lucida\ Console,Letter\ Gothic,
+  set guifont=Cascadia\ Code:h11,Consolas:h11,Courier,Lucida\ Console,Letter\ Gothic,
 				\Arial\ Alternative,Bitstream\ Vera\ Sans\ Mono,OCR\ A\ Extended
 elseif MySys() == "linux"
   set gfn=Monospace\ 10
@@ -241,7 +245,7 @@ else
   set nonu
 endif
 
-set encoding=utf8
+set encoding=utf-8
 try
     lang en_US
 catch
@@ -579,21 +583,6 @@ map <leader>s? z=
 
 
 """"""""""""""""""""""""""""""
-" => Python section
-""""""""""""""""""""""""""""""
-au FileType python set nocindent
-syn keyword pythonConstant True None False self
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
-
-au FileType python inoremap <buffer> $r return 
-au FileType python inoremap <buffer> $i import 
-au FileType python inoremap <buffer> $p print 
-au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-au FileType python map <buffer> <leader>C ?class 
-au FileType python map <buffer> <leader>D ?def 
-au FileType Python nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-
-""""""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
 let g:javascript_plugin_jsdoc = 1
@@ -739,3 +728,7 @@ endfunction
 " Stop start NerdTree at start up vim
 let g:nerdtree_tabs_open_on_gui_startup=0
 map <C-n> :NERDTreeToggle<CR>
+
+" Stop mouse wheel click
+:map <MiddleMouse> <Nop>
+:imap <MiddleMouse> <Nop>
